@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, send_from_directory
 from flask_cors import CORS
 from PIL import Image
 import numpy as np
@@ -32,16 +32,46 @@ def compare_images(image1_path, image2_path):
     plt.savefig(diff_file)
     plt.close()
 
+    # Save the comparison plot
+    comparison_plot_file = "comparison_plot.png"
+    plt.figure(figsize=(15, 5))
+
+    # Display Image 1 in RGB mode (keeping original colors)
+    image1_rgb = Image.open(image1_path)  # Reopen the image in its original color mode
+    plt.subplot(1, 3, 1)
+    plt.imshow(image1_rgb)  # Display image 1 in RGB
+    plt.title("Image 1")
+    plt.axis('off')
+
+    # Display Image 2 in RGB mode (keeping original colors)
+    image2_rgb = Image.open(image2_path)  # Reopen the image in its original color mode
+    plt.subplot(1, 3, 2)
+    plt.imshow(image2_rgb)  # Display image 2 in RGB
+    plt.title("Image 2")
+    plt.axis('off')
+
+    # Display Difference (using the 'hot' colormap for visualizing pixel difference)
+    plt.subplot(1, 3, 3)
+    plt.imshow(diff, cmap="hot")  # Keeping the 'hot' colormap to highlight differences
+    plt.title("Difference")
+    plt.axis('off')
+
+    # Save the comparison plot
+    plt.savefig(comparison_plot_file)
+    plt.close()
+
     total_pixels = diff.size
     significant_pixels = np.sum(significant_change)
     percent_change = (significant_pixels / total_pixels) * 100
 
     return {
         "diff_file": diff_file,
+        "comparison_plot_file": comparison_plot_file,  # Return the comparison plot filename
         "total_pixels": total_pixels,
         "significant_pixels": significant_pixels,
         "percent_change": percent_change,
     }
+
 
 # Function to generate a PDF report
 def generate_report(result, output_pdf="image_comparison_report.pdf"):
@@ -90,6 +120,11 @@ def compare():
     os.remove(result["diff_file"])
 
     return send_file(pdf_file, as_attachment=True)
+
+@app.route("/comparison-plot")
+def get_comparison_plot():
+    # Serve the comparison plot image
+    return send_from_directory(os.getcwd(), "comparison_plot.png")
 
 if __name__ == "__main__":
     app.run(debug=True)

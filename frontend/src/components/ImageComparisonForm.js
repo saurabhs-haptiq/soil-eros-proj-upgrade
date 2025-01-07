@@ -8,6 +8,7 @@ function ImageComparisonForm() {
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const [resultUrl, setResultUrl] = useState(null);
+  const [comparisonPlotUrl, setComparisonPlotUrl] = useState(null); // Added state for comparison plot image
 
   const handleImage1Change = (e) => setImage1(e.target.files[0]);
   const handleImage2Change = (e) => setImage2(e.target.files[0]);
@@ -30,6 +31,10 @@ function ImageComparisonForm() {
 
       const fileUrl = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
       setResultUrl(fileUrl);
+
+      // Fetch the comparison plot image
+      setComparisonPlotUrl("http://127.0.0.1:5000/comparison-plot");
+
     } catch (error) {
       console.error("Error comparing images:", error);
       alert("An error occurred while comparing the images.");
@@ -38,22 +43,30 @@ function ImageComparisonForm() {
 
   return (
     <div className="form-container">
-  <form onSubmit={handleSubmit} className="image-comparison-form">
-    <div className="file-input-container">
-      <FileInput label="Upload Image 1:" onChange={handleImage1Change} className="file-input" />
-    </div>
-    <div className="file-input-container">
-      <FileInput label="Upload Image 2:" onChange={handleImage2Change} className="file-input" />
-    </div>
-    <button type="submit" className="submit-button">Compare Images</button>
-  </form>
-  {resultUrl && (
-    <div className="download-result">
-      <DownloadResult resultUrl={resultUrl} />
-    </div>
-  )}
-</div>
+      <form onSubmit={handleSubmit} className="image-comparison-form">
+        <div className="file-input-container">
+          <FileInput label="Upload Image 1:" onChange={handleImage1Change} className="file-input" />
+        </div>
+        <div className="file-input-container">
+          <FileInput label="Upload Image 2:" onChange={handleImage2Change} className="file-input" />
+        </div>
+        <button type="submit" className="submit-button">Compare Images</button>
+      </form>
 
+      {resultUrl && (
+        <div className="download-result">
+          <DownloadResult resultUrl={resultUrl} />
+        </div>
+      )}
+
+      {/* Display the comparison plot image below the PDF result */}
+      {comparisonPlotUrl && (
+        <div className="comparison-plot-container">
+          <h3>Comparison Plot:</h3>
+          <img src={comparisonPlotUrl} alt="Comparison Plot" className="comparison-plot-image" />
+        </div>
+      )}
+    </div>
   );
 }
 
