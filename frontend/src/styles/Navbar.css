@@ -1,0 +1,86 @@
+/* Navbar styling */
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Change to darker background for better visibility */
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem; /* Adjusted for better spacing */
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for better visibility */
+  box-sizing: border-box;
+}
+
+/* Ensure navbar links don't cause overflow */
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0; /* Remove any extra margin */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.nav-links li {
+  margin: 0 20px; /* Space between links */
+  padding: 10px;
+}
+
+.nav-links a {
+  color: white; /* Change text color to white */
+  text-decoration: none;
+  font-size: 1rem; /* Adjust font size */
+  padding: 0.5rem 0.75rem; /* Add padding for better clickable area */
+  border-radius: 4px; /* Rounded corners for hover effect */
+  font-weight: 500; /* Slightly bold text */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00ffab; /* Hover color */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background highlight on hover */
+}
+
+/* Logo styling */
+.navbar-logo {
+  font-size: 1.5rem; /* Adjusted for consistency with navbar */
+  font-weight: bold;
+  color: #ecf0f1; /* Light color for text */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer; /* Make it clickable */
+  transition: color 0.3s ease; /* Smooth color change on hover */
+}
+
+.navbar-logo:hover {
+  color: #00ffab; /* Hover color */ /* Hover color change */
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start;
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+
+  .nav-links {
+    flex-direction: column; /* Stack links vertically */
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .nav-links li {
+    width: 100%; /* Make links take full width */
+  }
+
+  .nav-links li a {
+    display: block; /* Ensure the links stretch to full width */
+    text-align: left; /* Align text to the left */
+  }
+}
