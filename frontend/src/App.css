@@ -8,6 +8,20 @@ body {
   background-attachment: fixed; /* Keeps the background fixed when scrolling */
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.app-title {
+  color: white;
+}
+
+.content {
+  flex: 1;
+}
 
 .App {
   text-align: center;
