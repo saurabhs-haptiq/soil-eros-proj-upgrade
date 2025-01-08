@@ -16,7 +16,7 @@
     color: #333;
     margin-bottom: 20px;
   }
-  
+   
   .rainfall-list {
     list-style: none;
     padding: 0;
@@ -47,5 +47,40 @@
   .rainfall-amount {
     font-size: 18px;
     color: #007bff;
+  }
+  
+
+
+  /* for the enter year input  */
+.rainfall-container-heading{
+  color: black;
+}
+
+  
+  .year-input label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .year-input input {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    width: 150px;
+    margin-left: 10px;
+  }
+  
+  .year-input input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+  }
+  
+  .year-input input::placeholder {
+    color: #aaa;
+    font-style: italic;
   }
   

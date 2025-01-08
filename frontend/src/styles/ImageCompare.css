@@ -119,3 +119,38 @@
     border: 1px solid #ddd;
   }
   
+
+
+  /* select button custom styling */
+
+ 
+  
+  .dropdown-container label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .region-dropdown {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .region-dropdown:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+  }
+  
+  .region-dropdown option {
+    padding: 8px;
+    font-size: 16px;
+  }
+  

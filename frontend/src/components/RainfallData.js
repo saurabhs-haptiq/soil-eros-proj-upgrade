@@ -58,7 +58,7 @@ const RainfallData = () => {
 
   return (
     <div className="rainfall-container">
-      <h1>Rainfall Data</h1>
+      <h1 className="rainfall-container-heading">Rainfall Data</h1>
 
       {/* Year selection input */}
       <div className="year-input">
