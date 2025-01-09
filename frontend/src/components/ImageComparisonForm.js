@@ -56,7 +56,8 @@ function ImageComparisonForm() {
       setResultUrl(fileUrl);
 
       // Fetch the comparison plot image after the PDF is generated
-      setComparisonPlotUrl("http://127.0.0.1:5000/comparison-plot");
+      const timestamp = new Date().getTime();
+      setComparisonPlotUrl(`http://127.0.0.1:5000/comparison-plot?timestamp=${timestamp}`);
 
     } catch (error) {
       console.error("Error comparing images:", error);
