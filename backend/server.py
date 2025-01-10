@@ -12,6 +12,8 @@ CORS(app)  # Enable CORS for frontend-backend communication
 # Path to your images directory
 IMAGE_DIR = 'images'
 
+
+from matplotlib.colors import LinearSegmentedColormap
 # Function to compare two images
 def compare_images(image1_path, image2_path):
     image1 = Image.open(image1_path).convert("L")
@@ -30,7 +32,8 @@ def compare_images(image1_path, image2_path):
     diff_file = "difference.png"
     plt.figure(figsize=(10, 6))
     plt.title("Differences Between Images")
-    plt.imshow(diff, cmap="hot", interpolation="nearest")
+    green_colormap = LinearSegmentedColormap.from_list("green_only", [(0, "white"), (1, "red")])
+    plt.imshow(diff, cmap=green_colormap, interpolation="nearest")
     plt.colorbar(label="Difference Magnitude")
     plt.savefig(diff_file)
     plt.close()
@@ -55,7 +58,7 @@ def compare_images(image1_path, image2_path):
 
     # Display Difference
     plt.subplot(1, 3, 3)
-    plt.imshow(diff, cmap="hot")
+    plt.imshow(diff, cmap=green_colormap, interpolation="nearest")
     plt.title("Difference")
     plt.axis('off')
 
