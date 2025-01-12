@@ -92,7 +92,7 @@ def generate_report(result, output_pdf="image_comparison_report.pdf"):
     pdf.cell(200, 10, txt="Comparison Results:", ln=True)
     pdf.cell(200, 10, txt=f"Total Pixels: {result['total_pixels']}", ln=True)
     pdf.cell(200, 10, txt=f"Significant Change Pixels: {result['significant_pixels']}", ln=True)
-    pdf.cell(200, 10, txt=f"Vegetation Loss Percentage: {result['percent_change']:.2f}%", ln=True)
+    pdf.cell(200, 10, txt=f"Vegetation Change Percentage: {result['percent_change']:.2f}%", ln=True)
     pdf.ln(10)
 
     pdf.image(result["diff_file"], x=10, y=None, w=180)
